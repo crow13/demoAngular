@@ -1,0 +1,36 @@
+@import 'mobileResponsiveSetup';
+@import 'size';
+@import 'font';
+@import 'spacing';
+@import 'mainPageFussy';
+
+html {
+	font-size: 12px;
+	@include desktop {
+		font-size: 16px;
+	}
+}
+
+body {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.5;
+  font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  background: url('../images/backdrop.png');
+  background-size:100%;
+  overflow:hidden;
+}
+
+#backdrop {
+	background: black;
+	opacity: .83;
+	z-index:0;
+	position:absolute;
+}
+#content, #firstDialogId {
+	z-index:1;
+	opacity: .99;
+}

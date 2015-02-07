@@ -1,0 +1,254 @@
+.size1of10 {
+  width: 10%; }
+
+.size1of5 {
+  width: 20%; }
+
+.size1of4 {
+  width: 25%; }
+
+.size1of3 {
+  width: 33%; }
+
+.size2of5 {
+  width: 40%; }
+
+.size1of2 {
+  width: 50%; }
+
+.size3of5 {
+  width: 60%; }
+
+.size2of3 {
+  width: 66%; }
+
+.size7of10 {
+  width: 70%; }
+
+.size3of4 {
+  width: 75%; }
+
+.size4of5 {
+  width: 80%; }
+
+.size9of10 {
+  width: 90%; }
+
+.wFull {
+  width: 100%; }
+
+.txtBlk {
+  color: black; }
+
+.txtWht {
+  color: white; }
+
+.fs14 {
+  font-size: 1.4em; }
+
+.fs12 {
+  font-size: 1.2em; }
+
+.fs10 {
+  font-size: 1em; }
+
+@font-face {
+  font-family: 'Comic Neue';
+  src: url("../fonts/ComicNeue-Regular.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/ComicNeue-Regular.eot?#iefix") format("embedded-opentype"), url("../fonts/ComicNeue-Regular.woff") format("woff"), url("../fonts/ComicNeue-Regular.woff2") format("woff2"), url("../fonts/ComicNeue-Regular.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: 300; }
+@font-face {
+  font-family: 'Comic Neue Bold';
+  src: url("../fonts/ComicNeue-Bold.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/ComicNeue-Bold.eot?#iefix") format("embedded-opentype"), url("../fonts/ComicNeue-Bold.woff") format("woff"), url("../fonts/ComicNeue-Bold.woff2") format("woff2"), url("../fonts/ComicNeue-Bold.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: 700; }
+@font-face {
+  font-family: 'Comic Neue Light';
+  src: url("../fonts/ComicNeue-Light.eot");
+  /* IE9 Compat Modes */
+  src: url("../fonts/ComicNeue-Light.eot?#iefix") format("embedded-opentype"), url("../fonts/ComicNeue-Light.woff") format("woff"), url("../fonts/ComicNeue-Light.woff2") format("woff2"), url("../fonts/ComicNeue-Light.ttf") format("truetype");
+  /* Safari, Android, iOS */
+  font-weight: 700; }
+.txtC {
+  text-align: center; }
+
+.normalize {
+  font-weight: 100; }
+
+.kern12 {
+  letter-spacing: 0.12em; }
+
+.fLight {
+  font-family: Comic Neue Light; }
+
+.p0 {
+  padding: 0; }
+
+.p5 {
+  padding: 5px; }
+
+.p10 {
+  padding: 10px; }
+
+.p12 {
+  padding: 12px; }
+
+.p20 {
+  padding: 20px; }
+
+.pr0 {
+  padding-right: 0; }
+
+.pl30 {
+  padding-left: 30px; }
+
+.m0 {
+  margin: 0; }
+
+.m10 {
+  margin: 10px; }
+
+.m20 {
+  margin: 20px; }
+
+.balance {
+  margin-left: auto;
+  margin-right: auto; }
+
+.line {
+  display: block;
+  clear: both; }
+
+.unit {
+  float: left; }
+
+.unitRt {
+  float: right; }
+
+.flexUnit {
+  display: table-cell;
+  float: none;
+  width: auto; }
+
+.dInline {
+  display: inline; }
+
+.dBlock {
+  display: block; }
+
+.dTableCell {
+  display: table-cell; }
+
+.brdr0 {
+  border: 0; }
+
+.brdrRt0 {
+  border-right: 0; }
+
+#contentArea {
+  padding-top: 100px; }
+
+#carousel {
+  overflow: hidden; }
+
+.box {
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px; }
+
+.f6repBg {
+  background: #F6F6F6; }
+
+.searchBG {
+  background: #A7CF5E; }
+
+.searchBoxBrdr {
+  border-left: #D6D6D6 2px solid;
+  border-top: #D6D6D6 2px solid;
+  border-bottom: #D6D6D6 2px solid; }
+
+.crsrPntr {
+  cursor: pointer; }
+
+.moviesList {
+  list-style: none; }
+  .moviesList img {
+    padding-left: 20px;
+    height: 250px; }
+
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position: absolute;
+  z-index: 9999;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #000000;
+  opacity: 0.8;
+  color: black; }
+
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index: 10000;
+  position: absolute;
+  width: 50%;
+  /* Default */
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  color: black;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000; }
+
+.ng-modal-dialog-content {
+  padding: 10px;
+  text-align: left; }
+
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold; }
+
+html {
+  font-size: 12px; }
+  @media (min-width: 1024px) {
+    html {
+      font-size: 16px; } }
+
+body {
+  font-family: 'Comic Neue', sans-serif;
+  font-weight: 300;
+  font-size: 1em;
+  line-height: 1.5;
+  font-feature-settings: "kern";
+  -moz-font-feature-settings: "kern";
+  -webkit-font-feature-settings: "kern";
+  background: url("../images/backdrop.png");
+  background-size: 100%;
+  overflow: hidden; }
+
+#backdrop {
+  background: black;
+  opacity: .83;
+  z-index: 0;
+  position: absolute; }
+
+#content, #firstDialogId {
+  z-index: 1;
+  opacity: .99; }
+
+/*# sourceMappingURL=main.css.map */

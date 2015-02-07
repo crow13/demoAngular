@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html ng-app="myDemoApp">
+
+<head>
+<title>Demo per request</title>
+<link rel="stylesheet" type="text/css" href="./css/main.css">
+</head>
+
+<body class="m0 txtWht p0" data-ng-controller="myDemoCtrl" data-ng-init="init()">
+	<div class="wFull" id="backdrop">
+	</div>
+	<div class="line" id="content">
+		<div class="line" id="topLine">
+			<div id="topLeft" class="p20 unit">
+				<img src="./images/movieIcon.png" />
+				<h2 class="fs14 p10 kern12 dInline">we sorta like movies</h2>
+			</div>
+			<div id="topRight" ng-click="backToSearch()" class="p20 unitRt crsrPntr" style="display:none;">
+				<img src="./images/backArrow.png" />
+				<span class="fs12">back to search</span>
+			</div>
+		</div>
+		<div id="contentArea" class="line">
+			<div id="searchArea">
+				<h2 class="fs16 kern12 txtC">Search for your favorite movie title and have fun!</h2>
+				<p class="fs12 fLight normalize txtC">Enter a movie title below and click search to discover great information about your favorite movies.</p>
+				<div class="box balance size1of2 p12 f6repBg">
+					<div class="box balance line brdrRt0 searchBoxBrdr brdrRt0">
+						<img src="./images/searchIcon.png" class="unit p10" style="padding-right:0;">
+						<div class="m10 unit size3of4">
+							<input type="search" name="movieInput" id="searhcMovieInput" placeholder="Ex. pulp fiction, rugrats" class="wFull f6repBg brdr0 fs12" />
+						</div>
+						<a class="box p10 dTableCell txtC txtBlk size1of10 searchBG crsrPntr" ng-click="search()" id="searchBtn">Search</a>
+					</div>
+				</div>
+			</div>
+			<div style="display:none;" id="results">
+				<h3 class="fs12 pl30">Click on a movie below for more details</h3>
+				<div class="p20 moviesList">
+					<div id="carPrev" ng-click="carouselPrevClicked"></div>
+					<ul id="carousel">
+						<li class="dInline p10" ng-repeat="movie in movies">
+							<img ng-src="{{movie.posters.detailed}}" ng-click="toggleModal(movie)" height="180px" style="padding-right:20px;"/>
+						</li>
+					</ul>
+					<div id="carNext" ng-click="carouselNextClicked"></div>
+				</div>
+			</div>
+			<modal-dialog show='modalShown'>
+				<div class="unit">
+					<table>
+						<tr ng-if="modalData.title"><td>Title:</td><td>{{modalData.title}}</td></tr>
+						<tr ng-if="modalData.year"><td>Year:</td><td>{{modalData.year}}</td></tr>
+						<tr ng-if="modalData.mpaa_rating"><td>Rating:</td><td>{{modalData.mpaa_rating}}</td></tr>
+						<tr ng-if="modalData.ratings.critics_rating"><td>Critic's Response:</td><td>{{modalData.ratings.critics_rating}}</td></tr>
+						<tr ng-if="modalData.abridged_cast"><td colspan="2" class="p10">Who is in it?</td></tr>
+						<tr ng-if="modalData.abridged_cast" ng-repeat="castMember in modalData.abridged_cast"><td colspan="2">{{castMember.name}}</td></tr>
+					</table>
+				</div>
+				<img ng-src="{{modalData.posters.detailed}}" height="180px" class="unitRt p20" />
+			</modal-dialog>
+		</div>
+	</div>
+	<script src="js/angular.js"></script>
+	<script src="js/ngDialog.min.js"></script>
+	<script src="js/myDemoCtrl.js"></script>
+	<!--greenSock-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
+</body>
+</html>
