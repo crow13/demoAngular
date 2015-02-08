@@ -15,7 +15,7 @@
 				<img src="./images/movieIcon.png" />
 				<h2 class="fs14 p10 kern12 dInline">we sorta like movies</h2>
 			</div>
-			<div id="topRight" ng-click="backToSearch()" class="p20 unitRt crsrPntr" style="display:none;">
+			<div id="topRight" ng-click="backToSearch()" class="p20 unitRt crsrPntr" style="opacity: 0; display:none;">
 				<img src="./images/backArrow.png" />
 				<span class="fs12">back to search</span>
 			</div>
@@ -28,13 +28,13 @@
 					<div class="box balance line brdrRt0 searchBoxBrdr brdrRt0">
 						<img src="./images/searchIcon.png" class="unit p10" style="padding-right:0;">
 						<div class="m10 unit size3of4">
-							<input type="search" name="movieInput" id="searhcMovieInput" placeholder="Ex. pulp fiction, rugrats" class="wFull f6repBg brdr0 fs12" />
+							<input ng-keyup="$event.keyCode == 13 && search()" type="search" name="movieInput" id="searhcMovieInput" placeholder="Ex. pulp fiction, rugrats" class="wFull f6repBg brdr0 fs12" />
 						</div>
 						<a class="box p10 dTableCell txtC txtBlk size1of10 searchBG crsrPntr" ng-click="search()" id="searchBtn">Search</a>
 					</div>
 				</div>
 			</div>
-			<div style="display:none;" id="results">
+			<div style="opacity: 0; display:none;" id="results">
 				<h3 class="fs12 pl30">Click on a movie below for more details</h3>
 				<div class="p20 moviesList">
 					<div id="carPrev" ng-click="carouselPrevClicked"></div>
@@ -61,10 +61,9 @@
 			</modal-dialog>
 		</div>
 	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenMax.min.js"></script>
 	<script src="js/angular.js"></script>
 	<script src="js/ngDialog.min.js"></script>
 	<script src="js/myDemoCtrl.js"></script>
-	<!--greenSock-->
-	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenLite.min.js"></script>
 </body>
 </html>

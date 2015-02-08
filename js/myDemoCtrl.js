@@ -13,9 +13,12 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       	$http({method: 'JSONP', url: urlInput}).
 	        success(function(data, status) {
 	          $scope.movies = angular.fromJson(data.movies);
-	          document.getElementById("searchArea").style.display = "none";
-	          document.getElementById("results").style.display = "block";
-	          document.getElementById("topRight").style.display = "block";
+            var tl = new TimelineLite();
+            
+            tl.to(document.getElementById('searchArea'), 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
+            tl.to(document.getElementById('results'), 0.5, {css:{display:'block',alpha:1}});
+            tl.to(document.getElementById('topRight'), 0.5, {css:{display:'block',alpha:1}});
+
 	          document.getElementById("carousel").style.height = "250px";
 	          document.getElementById("carousel").style.width = $scope.movies.length*225+'px';
 	        }
@@ -23,11 +26,18 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
 	};
 
 	$scope.backToSearch = function() {
-		document.getElementById("searchArea").style.display = "block";
-		document.getElementById("results").style.display = "none";
-		document.getElementById("topRight").style.display = "none";
-		document.getElementById("carousel").style.height = "250px";
-		document.getElementById("carousel").style.width = "0";
+    var results = document.getElementById('results'),
+        topRight = document.getElementById('topRight'),
+        carousel = document.getElementById('carousel'),
+        searchArea = document.getElementById('searchArea');
+        
+    var tl = new TimelineLite();
+
+    tl.to(results, 0.5, {css:{alpha:0, display:'none'}});
+    tl.to(topRight, 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
+    tl.to(searchArea, 0.5, {css:{display:'block',alpha:1}});
+    carousel.style.height = "0";
+    carousel.style.width = "0";
 	}
 
 	$scope.carouselPrevClicked = function() {
