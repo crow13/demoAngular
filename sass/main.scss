@@ -2,7 +2,15 @@
 @import 'size';
 @import 'font';
 @import 'spacing';
-@import 'mainPageFussy';
+@import 'modal';
+@import 'carousel';
+
+#contentArea { padding-top:100px; }
+
+.f6repBg { background:#F6F6F6; }
+.searchBG { background:#A7CF5E; }
+.searchBoxBrdr { border-left: #D6D6D6 2px solid; border-top: #D6D6D6 2px solid; border-bottom: #D6D6D6 2px solid; }
+.crsrPntr { cursor: pointer; }
 
 html {
 	font-size: 12px;
@@ -33,23 +41,4 @@ body {
 #content, #firstDialogId {
 	z-index:1;
 	opacity: .99;
-}
-
-#carPrev, #carNext {
-	background: url("../images/carouselArrow.png");
-	width:72px;
-	height:72px;
-	position: absolute;
-	top:45%;
-}
-#carPrev {
-	left:20px;
-	-webkit-transform: rotate(180deg);
-	-moz-transform: rotate(180deg);
-	-ms-transform: rotate(180deg);
-	-o-transform: rotate(180deg);
-	transform: rotate(180deg);
-}
-#carNext {
-	right:20px;
 }

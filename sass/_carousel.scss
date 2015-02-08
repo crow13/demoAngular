@@ -1,0 +1,24 @@
+#carousel {overflow: auto; position:absolute;}
+#carPrev, #carNext {
+	background: url("../images/carouselArrow.png");
+	width:72px;
+	height:72px;
+	position: absolute;
+	top:45%;
+	z-index:2;
+}
+#carPrev {
+	left:20px;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	-ms-transform: rotate(180deg);
+	-o-transform: rotate(180deg);
+	transform: rotate(180deg);
+	opacity: 0;
+}
+#carNext {
+	right:20px;
+}
+.moviesList { list-style: none; 
+	img {padding-left:20px; height:250px;}
+	}

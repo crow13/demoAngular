@@ -6,6 +6,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     	var screenHeight = screen.height,
     		blackDrop = document.getElementById('backdrop');
     	blackDrop.style.height = screenHeight+"px";
+      document.getElementById('carousel').setAttribute('offToTheLeft',0);
     };
 
     $scope.search = function() {
@@ -23,42 +24,75 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
 	          document.getElementById("carousel").style.width = $scope.movies.length*225+'px';
 	        }
         );
-	};
+    };
 
-	$scope.backToSearch = function() {
-    var results = document.getElementById('results'),
-        topRight = document.getElementById('topRight'),
-        carousel = document.getElementById('carousel'),
-        searchArea = document.getElementById('searchArea');
-        
-    var tl = new TimelineLite();
+    $scope.backToSearch = function() {
+      var results = document.getElementById('results'),
+          topRight = document.getElementById('topRight'),
+          carousel = document.getElementById('carousel'),
+          searchArea = document.getElementById('searchArea');
+          
+      var tl = new TimelineLite();
 
-    tl.to(results, 0.5, {css:{alpha:0, display:'none'}});
-    tl.to(topRight, 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
-    tl.to(searchArea, 0.5, {css:{display:'block',alpha:1}});
-    carousel.style.height = "0";
-    carousel.style.width = "0";
-	}
+      tl.to(results, 0.5, {css:{alpha:0, display:'none'}});
+      tl.to(topRight, 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
+      tl.to(searchArea, 0.5, {css:{display:'block',alpha:1}});
+      carousel.style.height = "0";
+      carousel.style.width = "0";
+    };
 
-	$scope.carouselPrevClicked = function() {
+  	$scope.carouselPrevClicked = function() {
+      var carousel = document.getElementById('carousel'),
+        atNow = parseInt(carousel.getAttribute("offToTheLeft")),
+        rightWall = carousel.width - screen.width;
+      rightWall = 0 - rightWall;
+      atNow += 240;
+      carousel.setAttribute("offToTheLeft",atNow);
 
-	};
+      var tl = new TimelineLite();
+      tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
 
-	$scope.carouselNextClicked = function() {
+      if(atNow >= 0){
+          tl.to(document.getElementById('carPrev'), 0.5, {css:{alpha:0, display:'none'}});
+      }
+      if(atNow < rightWall && document.getElementById('carNext').style.opacity ==0){
+          tl.to(document.getElementById('carNext'), 0.5, {css:{display:'block', alpha:1}});
+      }
+  	};
 
-	};
+  	$scope.carouselNextClicked = function() {
+      var carousel = document.getElementById('carousel'),
+        atNow = parseInt(carousel.getAttribute("offToTheLeft")),
+        rightWall = parseInt(carousel.style.width) - screen.width;
+      rightWall = 0 - rightWall;
 
-	$scope.showDataCard = function(elementInfo) {
-		console.log(elementInfo.movie);
-		$scope.open(elementInfo.movie);
-	}
+      atNow -= 240;
+      carousel.setAttribute("offToTheLeft",atNow);
 
- 	$scope.modalShown = false;
- 	$scope.toggleModal = function(movieInput) {
- 		console.log(movieInput);
- 		$scope.modalData = movieInput;
-    	$scope.modalShown = !$scope.modalShown;
-	};
+      var tl = new TimelineLite();
+      tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
+
+      if(atNow < 0){
+          tl.to(document.getElementById('carPrev'), 0.5, {css:{display:'block', alpha:1}});
+      }
+      if(atNow < rightWall){
+          tl.to(document.getElementById('carNext'), 0.5, {css:{alpha:0, display:'none'}});
+
+      }
+
+  	};
+
+  	$scope.showDataCard = function(elementInfo) {
+  		console.log(elementInfo.movie);
+  		$scope.open(elementInfo.movie);
+  	}
+
+   	$scope.modalShown = false;
+   	$scope.toggleModal = function(movieInput) {
+   		console.log(movieInput);
+   		$scope.modalData = movieInput;
+      	$scope.modalShown = !$scope.modalShown;
+  	};
 });
 
 app.directive('modalDialog', function() {

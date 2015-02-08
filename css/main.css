@@ -149,37 +149,11 @@
 .brdrRt0 {
   border-right: 0; }
 
-#contentArea {
-  padding-top: 100px; }
-
-#carousel {
-  overflow: hidden; }
-
 .box {
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   border-radius: 10px; }
-
-.f6repBg {
-  background: #F6F6F6; }
-
-.searchBG {
-  background: #A7CF5E; }
-
-.searchBoxBrdr {
-  border-left: #D6D6D6 2px solid;
-  border-top: #D6D6D6 2px solid;
-  border-bottom: #D6D6D6 2px solid; }
-
-.crsrPntr {
-  cursor: pointer; }
-
-.moviesList {
-  list-style: none; }
-  .moviesList img {
-    padding-left: 20px;
-    height: 250px; }
 
 .ng-modal-overlay {
   /* A dark translucent div that covers the whole screen */
@@ -223,6 +197,53 @@
   display: inline-block;
   font-weight: bold; }
 
+#carousel {
+  overflow: auto;
+  position: absolute; }
+
+#carPrev, #carNext {
+  background: url("../images/carouselArrow.png");
+  width: 72px;
+  height: 72px;
+  position: absolute;
+  top: 45%;
+  z-index: 2; }
+
+#carPrev {
+  left: 20px;
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  transform: rotate(180deg);
+  opacity: 0; }
+
+#carNext {
+  right: 20px; }
+
+.moviesList {
+  list-style: none; }
+  .moviesList img {
+    padding-left: 20px;
+    height: 250px; }
+
+#contentArea {
+  padding-top: 100px; }
+
+.f6repBg {
+  background: #F6F6F6; }
+
+.searchBG {
+  background: #A7CF5E; }
+
+.searchBoxBrdr {
+  border-left: #D6D6D6 2px solid;
+  border-top: #D6D6D6 2px solid;
+  border-bottom: #D6D6D6 2px solid; }
+
+.crsrPntr {
+  cursor: pointer; }
+
 html {
   font-size: 12px; }
   @media (min-width: 1024px) {
@@ -250,23 +271,5 @@ body {
 #content, #firstDialogId {
   z-index: 1;
   opacity: .99; }
-
-#carPrev, #carNext {
-  background: url("../images/carouselArrow.png");
-  width: 72px;
-  height: 72px;
-  position: absolute;
-  top: 45%; }
-
-#carPrev {
-  left: 20px;
-  -webkit-transform: rotate(180deg);
-  -moz-transform: rotate(180deg);
-  -ms-transform: rotate(180deg);
-  -o-transform: rotate(180deg);
-  transform: rotate(180deg); }
-
-#carNext {
-  right: 20px; }
 
 /*# sourceMappingURL=main.css.map */
