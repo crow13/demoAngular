@@ -5,6 +5,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     	//make black background run full height regardless of what is inside
     	var screenHeight = screen.height,
     		blackDrop = document.getElementById('backdrop');
+      //make sure the backdrop takes the whole height
     	blackDrop.style.height = screenHeight+"px";
       document.getElementById('carousel').setAttribute('offToTheLeft',0);
     };
@@ -83,13 +84,11 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
   	};
 
   	$scope.showDataCard = function(elementInfo) {
-  		console.log(elementInfo.movie);
   		$scope.open(elementInfo.movie);
   	}
 
    	$scope.modalShown = false;
    	$scope.toggleModal = function(movieInput) {
-   		console.log(movieInput);
    		$scope.modalData = movieInput;
       	$scope.modalShown = !$scope.modalShown;
   	};
