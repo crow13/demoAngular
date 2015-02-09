@@ -20,25 +20,23 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
 	        success(function(data, status) {
 	          $scope.movies = angular.fromJson(data.movies);
             var carousel = document.getElementById("carousel"),
-              carNext = document.getElementById('carNext');
+              carNext = document.getElementById('carNext'),
+              carWidth = data.movies.length * 250;
+
             //reset the carousel
             carNext.style.opacity = 0;
             document.getElementById('carPrev').style.opacity = 0;
             carousel.style.height = "250px";
             carousel.style.left = "0";
             carousel.setAttribute("offToTheLeft","0");
+            carousel.style.width = carWidth + "px";
 
+            //Paint
             var tl = new TimelineLite();
             
             tl.to(document.getElementById('searchArea'), 0.5, hideCss, "+=0.5");
             tl.to(document.getElementById('results'), 0.5, showCss);
             tl.to(document.getElementById('topRight'), 0.5, showCss);
-
-            var carWidth = 0,
-              ender = data.movies.length;
-
-            carWidth = ender * 250;
-            carousel.style.width = carWidth + "px";
 
             if(parseInt(carousel.style.width) > screen.width){
               tl.to(carNext, 0.5, showCss);
