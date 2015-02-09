@@ -1,4 +1,6 @@
-var app = angular.module("myDemoApp", ['ngDialog']);
+var app = angular.module("myDemoApp", ['ngDialog']),
+  showCss = {css:{display:'block',alpha:1}},
+  hideCss = {css:{alpha:0, display:'none'}};
 
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
@@ -8,7 +10,6 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     		blackDrop = document.getElementById('backdrop');
       //make sure the backdrop takes the whole height
     	blackDrop.style.height = screenHeight+"px";
-      document.getElementById('carousel').setAttribute('offToTheLeft',0);
     };
 
 
@@ -18,14 +19,30 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       	$http({method: 'JSONP', url: urlInput}).
 	        success(function(data, status) {
 	          $scope.movies = angular.fromJson(data.movies);
+            var carousel = document.getElementById("carousel"),
+              carNext = document.getElementById('carNext');
+            //reset the carousel
+            carNext.style.opacity = 0;
+            document.getElementById('carPrev').style.opacity = 0;
+            carousel.style.height = "250px";
+            carousel.style.left = "0";
+            carousel.setAttribute("offToTheLeft","0");
+
             var tl = new TimelineLite();
             
-            tl.to(document.getElementById('searchArea'), 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
-            tl.to(document.getElementById('results'), 0.5, {css:{display:'block',alpha:1}});
-            tl.to(document.getElementById('topRight'), 0.5, {css:{display:'block',alpha:1}});
+            tl.to(document.getElementById('searchArea'), 0.5, hideCss, "+=0.5");
+            tl.to(document.getElementById('results'), 0.5, showCss);
+            tl.to(document.getElementById('topRight'), 0.5, showCss);
 
-	          document.getElementById("carousel").style.height = "250px";
-	          document.getElementById("carousel").style.width = $scope.movies.length*250+'px';
+            var carWidth = 0,
+              ender = document.getElementById("carousel").getElementsByTagName("li").length;
+
+            carWidth = ender * 250;
+            carousel.style.width = carWidth + "px";
+
+            if(parseInt(carousel.style.width) > screen.width){
+              tl.to(carNext, 0.5, showCss);
+            }
 	        }
         );
     };
@@ -38,11 +55,9 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
           
       var tl = new TimelineLite();
 
-      tl.to(results, 0.5, {css:{alpha:0, display:'none'}});
-      tl.to(topRight, 0.5, {css:{alpha:0, display:'none'}}, "+=0.5");
-      tl.to(searchArea, 0.5, {css:{display:'block',alpha:1}});
-      carousel.style.height = "0";
-      carousel.style.width = "0";
+      tl.to(results, 0.5, hideCss);
+      tl.to(topRight, 0.5, hideCss, "+=0.5");
+      tl.to(searchArea, 0.5, showCss);
     };
 
   	$scope.carouselPrevClicked = function() {
@@ -59,10 +74,10 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       };
 
       if(atNow >= 0){
-          tl.to(document.getElementById('carPrev'), 0.5, {css:{alpha:0, display:'none'}});
+          tl.to(document.getElementById('carPrev'), 0.5, hideCss);
       }
       if(atNow >= rightWall && document.getElementById('carNext').style.opacity == "0"){
-          tl.to(document.getElementById('carNext'), 0.5, {css:{display:'block', alpha:1}});
+          tl.to(document.getElementById('carNext'), 0.5, showCss);
       }
   	};
 
@@ -80,10 +95,10 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       }
 
       if(atNow < 0){
-          tl.to(document.getElementById('carPrev'), 0.5, {css:{display:'block', alpha:1}});
+          tl.to(document.getElementById('carPrev'), 0.5, showCss);
       }
       if(atNow < rightWall){
-          tl.to(document.getElementById('carNext'), 0.5, {css:{alpha:0, display:'none'}});
+          tl.to(document.getElementById('carNext'), 0.5, hideCss);
       }
   	};
 
@@ -126,9 +141,9 @@ app.directive('resize', function ($window) {
         var w = angular.element($window),
           backdrop = document.getElementById("backdrop"),
           content = document.getElementById("content");
-        backdrop.style.height = w.height() + "px";
-        backdrop.style.width = w.width() + "px";
-        content.style.height = w.height() + "px";
-        content.style.width = w.width() + "px";
+        backdrop.style.height = w.height + "px";
+        backdrop.style.width = w.width + "px";
+        content.style.height = w.height + "px";
+        content.style.width = w.width + "px";
       };
 });

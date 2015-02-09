@@ -1,11 +1,12 @@
 #carousel {overflow: hidden; position:absolute;}
 #carPrev, #carNext {
 	background: url("../images/carouselArrow.png");
-	width:72px;
-	height:72px;
+	width:71px;
+	height:71px;
 	position: absolute;
 	top:45%;
 	z-index:2;
+	opacity: 0;
 }
 #carPrev {
 	left:20px;
@@ -14,7 +15,6 @@
 	-ms-transform: rotate(180deg);
 	-o-transform: rotate(180deg);
 	transform: rotate(180deg);
-	opacity: 0;
 }
 #carNext {
 	right:20px;
