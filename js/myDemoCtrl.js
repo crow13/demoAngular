@@ -3,12 +3,15 @@ var app = angular.module("myDemoApp", ['ngDialog']);
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
     	//make black background run full height regardless of what is inside
-    	var screenHeight = screen.height,
+      var screenHeight = screen.height,
+        screenWidth = screen.width,
     		blackDrop = document.getElementById('backdrop');
       //make sure the backdrop takes the whole height
     	blackDrop.style.height = screenHeight+"px";
       document.getElementById('carousel').setAttribute('offToTheLeft',0);
     };
+
+
 
     $scope.search = function() {
     	var urlInput = 'http://api.rottentomatoes.com/api/public/v1.0/movies.json?apikey=2q5jxgutpb2zk3uwunbcawbx&callback=JSON_CALLBACK&q='+document.getElementById("searhcMovieInput").value;
@@ -45,19 +48,20 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
   	$scope.carouselPrevClicked = function() {
       var carousel = document.getElementById('carousel'),
         atNow = parseInt(carousel.getAttribute("offToTheLeft")),
-        rightWall = parseInt(carousel.style.width) - screen.width;
+        rightWall = parseInt(carousel.style.width) - screen.width,
+        tl = new TimelineLite();
       rightWall = 0 - rightWall;
 
-      atNow += document.getElementById("carousel").getElementsByTagName("li")[0].offsetWidth;
-      carousel.setAttribute("offToTheLeft",atNow);
-
-      var tl = new TimelineLite();
-      tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
+      if(atNow < 0){
+        atNow += document.getElementById("carousel").getElementsByTagName("li")[0].offsetWidth;
+        carousel.setAttribute("offToTheLeft",atNow);
+        tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
+      };
 
       if(atNow >= 0){
           tl.to(document.getElementById('carPrev'), 0.5, {css:{alpha:0, display:'none'}});
       }
-      if(atNow <= rightWall && document.getElementById('carNext').style.opacity == "0"){
+      if(atNow >= rightWall && document.getElementById('carNext').style.opacity == "0"){
           tl.to(document.getElementById('carNext'), 0.5, {css:{display:'block', alpha:1}});
       }
   	};
@@ -65,14 +69,15 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
   	$scope.carouselNextClicked = function() {
       var carousel = document.getElementById('carousel'),
         atNow = parseInt(carousel.getAttribute("offToTheLeft")),
-        rightWall = parseInt(carousel.style.width) - screen.width;
+        rightWall = parseInt(carousel.style.width) - screen.width,
+        tl = new TimelineLite();
       rightWall = 0 - rightWall;
+        atNow -= document.getElementById("carousel").getElementsByTagName("li")[0].offsetWidth;
 
-      atNow -= document.getElementById("carousel").getElementsByTagName("li")[0]. offsetWidth;
-      carousel.setAttribute("offToTheLeft",atNow);
-
-      var tl = new TimelineLite();
-      tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
+      if(atNow >= rightWall){
+        carousel.setAttribute("offToTheLeft",atNow);
+        tl.to(carousel, 0.5, {css:{left:atNow + 'px'}})
+      }
 
       if(atNow < 0){
           tl.to(document.getElementById('carPrev'), 0.5, {css:{display:'block', alpha:1}});
@@ -116,3 +121,14 @@ app.directive('modalDialog', function() {
   };
 });
 
+app.directive('resize', function ($window) {
+    return function (scope, element) {
+        var w = angular.element($window),
+          backdrop = document.getElementById("backdrop"),
+          content = document.getElementById("content");
+        backdrop.style.height = w.height() + "px";
+        backdrop.style.width = w.width() + "px";
+        content.style.height = w.height() + "px";
+        content.style.width = w.width() + "px";
+      };
+});
