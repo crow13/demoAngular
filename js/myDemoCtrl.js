@@ -35,7 +35,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
             tl.to(document.getElementById('topRight'), 0.5, showCss);
 
             var carWidth = 0,
-              ender = document.getElementById("carousel").getElementsByTagName("li").length;
+              ender = data.movies.length;
 
             carWidth = ender * 250;
             carousel.style.width = carWidth + "px";
@@ -58,6 +58,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       tl.to(results, 0.5, hideCss);
       tl.to(topRight, 0.5, hideCss, "+=0.5");
       tl.to(searchArea, 0.5, showCss);
+      carousel.style.width = 0;
     };
 
   	$scope.carouselPrevClicked = function() {
