@@ -22,7 +22,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
             tl.to(document.getElementById('topRight'), 0.5, {css:{display:'block',alpha:1}});
 
 	          document.getElementById("carousel").style.height = "250px";
-	          document.getElementById("carousel").style.width = $scope.movies.length*225+'px';
+	          document.getElementById("carousel").style.width = $scope.movies.length*250+'px';
 	        }
         );
     };
@@ -45,9 +45,10 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
   	$scope.carouselPrevClicked = function() {
       var carousel = document.getElementById('carousel'),
         atNow = parseInt(carousel.getAttribute("offToTheLeft")),
-        rightWall = carousel.width - screen.width;
+        rightWall = parseInt(carousel.style.width) - screen.width;
       rightWall = 0 - rightWall;
-      atNow += 240;
+
+      atNow += document.getElementById("carousel").getElementsByTagName("li")[0].offsetWidth;
       carousel.setAttribute("offToTheLeft",atNow);
 
       var tl = new TimelineLite();
@@ -56,7 +57,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       if(atNow >= 0){
           tl.to(document.getElementById('carPrev'), 0.5, {css:{alpha:0, display:'none'}});
       }
-      if(atNow < rightWall && document.getElementById('carNext').style.opacity ==0){
+      if(atNow <= rightWall && document.getElementById('carNext').style.opacity == "0"){
           tl.to(document.getElementById('carNext'), 0.5, {css:{display:'block', alpha:1}});
       }
   	};
@@ -67,7 +68,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
         rightWall = parseInt(carousel.style.width) - screen.width;
       rightWall = 0 - rightWall;
 
-      atNow -= 240;
+      atNow -= document.getElementById("carousel").getElementsByTagName("li")[0]. offsetWidth;
       carousel.setAttribute("offToTheLeft",atNow);
 
       var tl = new TimelineLite();
@@ -78,9 +79,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
       }
       if(atNow < rightWall){
           tl.to(document.getElementById('carNext'), 0.5, {css:{alpha:0, display:'none'}});
-
       }
-
   	};
 
   	$scope.showDataCard = function(elementInfo) {
@@ -88,9 +87,10 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
   	}
 
    	$scope.modalShown = false;
+
    	$scope.toggleModal = function(movieInput) {
    		$scope.modalData = movieInput;
-      	$scope.modalShown = !$scope.modalShown;
+      $scope.modalShown = !$scope.modalShown;
   	};
 });
 

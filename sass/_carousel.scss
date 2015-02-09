@@ -1,4 +1,4 @@
-#carousel {overflow: auto; position:absolute;}
+#carousel {overflow: hidden; position:absolute;}
 #carPrev, #carNext {
 	background: url("../images/carouselArrow.png");
 	width:72px;

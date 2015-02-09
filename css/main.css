@@ -198,7 +198,7 @@
   font-weight: bold; }
 
 #carousel {
-  overflow: auto;
+  overflow: hidden;
   position: absolute; }
 
 #carPrev, #carNext {
