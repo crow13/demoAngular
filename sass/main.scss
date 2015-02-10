@@ -50,9 +50,7 @@ body {
 #content, #firstDialogId, .op99 {
 	opacity: .99;
 }
-#content {
-	display:block;
-}
+
 .searchBoxOuter {
 	width:50%;
 	@include phoneLandscape {

@@ -5,7 +5,7 @@ var app = angular.module("myDemoApp", ['ngDialog']),
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
     	//make black background run full height regardless of what is inside
-      window.onresize();
+      window.resize;
     };
 
 
@@ -143,7 +143,8 @@ window.onresize = function(event){
     backdrop.style.height = distance + "px";
     content.style.height = distance + "px";
   } else {
-    backdrop.style.height = content.style.height = window.innerHeight + "px";
+    backdrop.style.height = window.innerHeight + "px";
+    content.style.height = window.innerHeight + "px";
   }
   content.style.overflow = 'hidden';
 };
