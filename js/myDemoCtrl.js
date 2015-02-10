@@ -5,7 +5,7 @@ var app = angular.module("myDemoApp", ['ngDialog']),
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
     	//make black background run full height regardless of what is inside
-      pageResize(event);
+      pageResize();
     };
 
 
@@ -36,7 +36,6 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
             if(parseInt(carousel.style.width) > screen.width){
               tl.to(carNext, 0.5, showCss);
             }
-            pageResize(event);
 	        }
         );
     };
