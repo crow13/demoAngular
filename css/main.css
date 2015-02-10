@@ -100,11 +100,17 @@
 .p20 {
   padding: 20px; }
 
+.pl0 {
+  padding-left: 0; }
+
 .pr0 {
   padding-right: 0; }
 
 .pl30 {
   padding-left: 30px; }
+
+.pt35 {
+  padding-top: 35px; }
 
 .m0 {
   margin: 0; }
@@ -203,10 +209,10 @@
 
 #carPrev, #carNext {
   background: url("../images/carouselArrow.png");
-  width: 72px;
-  height: 72px;
+  width: 71px;
+  height: 71px;
   position: absolute;
-  top: 45%;
+  top: 60%;
   z-index: 2;
   opacity: 0; }
 
@@ -225,10 +231,14 @@
   list-style: none; }
   .moviesList img {
     padding-left: 20px;
-    height: 250px; }
+    width: 210px; }
 
 #contentArea {
-  padding-top: 100px; }
+  padding-top: 100px;
+  overflow: hidden; }
+  @media only screen and (min-width: 321px) and (max-width: 768px) {
+    #contentArea {
+      padding-top: 10px; } }
 
 .f6repBg {
   background: #F6F6F6; }
@@ -245,8 +255,8 @@
   cursor: pointer; }
 
 html {
-  font-size: 12px; }
-  @media (min-width: 1024px) {
+  font-size: 10px; }
+  @media screen and (min-width: 1024px) {
     html {
       font-size: 16px; } }
 
@@ -269,7 +279,24 @@ body {
   position: absolute; }
 
 #content, #firstDialogId {
-  z-index: 1;
+  z-index: 1; }
+
+#content, #firstDialogId, .op99 {
   opacity: .99; }
+
+#content {
+  display: block; }
+
+.searchBoxOuter {
+  width: 50%; }
+  @media screen and (max-width: 640px) {
+    .searchBoxOuter {
+      width: 80%; } }
+
+html, body {
+  overflow-x: hidden; }
+
+body {
+  position: relative; }
 
 /*# sourceMappingURL=main.css.map */

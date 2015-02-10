@@ -5,7 +5,13 @@
 @import 'modal';
 @import 'carousel';
 
-#contentArea { padding-top:100px; }
+#contentArea {
+	padding-top:100px;
+	@media only screen and (min-width : 321px) and (max-width: 768px) {
+		padding-top:10px;
+	}
+	overflow:hidden; 
+}
 
 .f6repBg { background:#F6F6F6; }
 .searchBG { background:#A7CF5E; }
@@ -13,7 +19,7 @@
 .crsrPntr { cursor: pointer; }
 
 html {
-	font-size: 12px;
+	font-size: 10px;
 	@include desktop {
 		font-size: 16px;
 	}
@@ -40,5 +46,22 @@ body {
 }
 #content, #firstDialogId {
 	z-index:1;
+}
+#content, #firstDialogId, .op99 {
 	opacity: .99;
+}
+#content {
+	display:block;
+}
+.searchBoxOuter {
+	width:50%;
+	@include phoneLandscape {
+		width:80%;
+	}
+}
+html, body {
+  overflow-x: hidden;
+}
+body {
+  position: relative
 }

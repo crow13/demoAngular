@@ -5,11 +5,7 @@ var app = angular.module("myDemoApp", ['ngDialog']),
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
     	//make black background run full height regardless of what is inside
-      var screenHeight = screen.height,
-        screenWidth = screen.width,
-    		blackDrop = document.getElementById('backdrop');
-      //make sure the backdrop takes the whole height
-    	blackDrop.style.height = screenHeight+"px";
+      window.onresize();
     };
 
 
@@ -21,12 +17,11 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
 	          $scope.movies = angular.fromJson(data.movies);
             var carousel = document.getElementById("carousel"),
               carNext = document.getElementById('carNext'),
-              carWidth = data.movies.length * 250;
+              carWidth = data.movies.length * 280;
 
             //reset the carousel
             carNext.style.opacity = 0;
             document.getElementById('carPrev').style.opacity = 0;
-            carousel.style.height = "250px";
             carousel.style.left = "0";
             carousel.setAttribute("offToTheLeft","0");
             carousel.style.width = carWidth + "px";
@@ -41,6 +36,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
             if(parseInt(carousel.style.width) > screen.width){
               tl.to(carNext, 0.5, showCss);
             }
+            window.resize;
 	        }
         );
     };
@@ -135,14 +131,19 @@ app.directive('modalDialog', function() {
   };
 });
 
-app.directive('resize', function ($window) {
-    return function (scope, element) {
-        var w = angular.element($window),
-          backdrop = document.getElementById("backdrop"),
-          content = document.getElementById("content");
-        backdrop.style.height = w.height + "px";
-        backdrop.style.width = w.width + "px";
-        content.style.height = w.height + "px";
-        content.style.width = w.width + "px";
-      };
-});
+window.onresize = function(event){
+  var backdrop = document.getElementById("backdrop"),
+    content = document.getElementById("content");
+
+  //if you're on the second page
+  if(document.getElementById('carousel').style.width != ""){
+    var scrollTop     = $(window).scrollTop(),
+      elementOffset = $(document.getElementById('carousel')).offset().top,
+      distance      = (elementOffset - scrollTop) + $(document.getElementById('carousel')).outerHeight();
+    backdrop.style.height = distance + "px";
+    content.style.height = distance + "px";
+  } else {
+    backdrop.style.height = content.style.height = window.innerHeight + "px";
+  }
+  content.style.overflow = 'hidden';
+};

@@ -4,55 +4,37 @@ $tablet-width: 768px;
 $desktop-width: 1024px;
 
 @mixin tablet {
-  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+  media screen and (min-width: #{$tablet-width}) and (max-width: #{$desktop-width}) {
     @content;
   }
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop-width}) {
+  @media screen and (min-width: #{$desktop-width}) {
     @content;
   }
 }
 
 @mixin phonePortrait {
-  media (max-width: #{$mobileSmallWidth} and (orientation: portrait)){
+  @media screen and (max-width: #{$mobileSmallWidth}){
     @content;
   }
 }
 
 @mixin phoneLandscape {
-  media (max-width: #{$mobileSmallHeight} and (orientation: landscape)){
+  @media screen and (max-width: #{$mobileSmallHeight}){
     @content;
   }
 }
 
-@mixin iphone4Portrait {
-  media (max-width: #{$mobileSmallWidth} and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2)){
+@mixin notPhone {
+  @media screen and (min-width: #{$mobileSmallWidth}){
     @content;
-  }
-}
-
-@mixin iphone4Landscape {
-  media (max-width: #{$mobileSmallHeight} and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2)){
-    @content;
-  }
-}
-
-@mixin tabletLandscape {
-  media (min-width: #{$tablet-width} and max-width: #{$desktop-width}  and (orientation: landscape)){
-    @content;
-  }
-}
-
-@mixin tabletPortrait {
-  media (min-width: #{$tablet-width} and max-width: #{$desktop-width}  and (orientation: Portrait)){
-    @content;
-  }
+  }  
 }
 
 @mixin desktop {
-  @media (min-width: #{$desktop-width}){
+  @media screen and (min-width: #{$desktop-width}){
     @content;
   }
 }

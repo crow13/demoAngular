@@ -8,15 +8,15 @@
 </head>
 
 <body class="m0 txtWht p0" data-ng-controller="myDemoCtrl" data-ng-init="init()" resize>
-	<div class="wFull" id="backdrop">
+	<div id="backdrop">
 	</div>
-	<div class="line" id="content">
+	<div id="content">
 		<div class="line" id="topLine">
-			<div id="topLeft" class="p20 unit">
+			<div id="topLeft" class="p20 unit pr0">
 				<img src="./images/movieIcon.png" />
-				<h2 class="fs14 p10 kern12 dInline">we sorta like movies</h2>
+				<h2 class="fs14 p10 kern12 pr0 dInline">we sorta like movies</h2>
 			</div>
-			<div id="topRight" ng-click="backToSearch()" class="p20 unitRt crsrPntr" style="opacity: 0; display:none;">
+			<div id="topRight" ng-click="backToSearch()" class="p20 pl0 pt35 unitRt crsrPntr" style="opacity: 0; display:none;">
 				<img src="./images/backArrow.png" />
 				<span class="fs12">back to search</span>
 			</div>
@@ -25,7 +25,7 @@
 			<div id="searchArea">
 				<h2 class="fs16 kern12 txtC">Search for your favorite movie title and have fun!</h2>
 				<p class="fs12 fLight normalize txtC">Enter a movie title below and click search to discover great information about your favorite movies.</p>
-				<div class="box balance size1of2 p12 f6repBg">
+				<div class="box balance searchBoxOuter p12 f6repBg">
 					<div class="box balance line brdrRt0 searchBoxBrdr brdrRt0">
 						<img src="./images/searchIcon.png" class="unit p10" style="padding-right:0;">
 						<div class="m10 unit size3of4">
@@ -37,7 +37,7 @@
 			</div>
 			<div style="opacity: 0; display:none;" id="results">
 				<h3 class="fs12 pl30">Click on a movie below for more details</h3>
-				<div class="p20 moviesList">
+				<div class="moviesList">
 					<div id="carPrev" ng-click="carouselPrevClicked()"></div>
 					<div id="carNext" ng-click="carouselNextClicked()"></div>
 					<ul id="carousel">
@@ -48,7 +48,7 @@
 				</div>
 			</div>
 			<modal-dialog show="modalShown">
-				<div class="unit">
+				<div class="unit pr0">
 					<table>
 						<tr ng-if="modalData.title"><td>Title:</td><td>{{modalData.title}}</td></tr>
 						<tr ng-if="modalData.year"><td>Year:</td><td>{{modalData.year}}</td></tr>
@@ -58,10 +58,11 @@
 						<tr ng-if="modalData.abridged_cast" ng-repeat="castMember in modalData.abridged_cast"><td colspan="2">{{castMember.name}}</td></tr>
 					</table>
 				</div>
-				<img ng-src="{{modalData.posters.detailed}}" height="180px" class="unitRt p20" />
+				<img ng-src="{{modalData.posters.detailed}}" height="180px" class="unitRt pl0 p20" />
 			</modal-dialog>
 		</div>
 	</div>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.15.1/TweenMax.min.js"></script>
 	<script src="js/angular.js"></script>
 	<script src="js/ngDialog.min.js"></script>
