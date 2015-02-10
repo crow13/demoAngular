@@ -5,7 +5,7 @@ var app = angular.module("myDemoApp", ['ngDialog']),
 app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
     $scope.init = function() {
     	//make black background run full height regardless of what is inside
-      window.resize;
+      pageResize(event);
     };
 
 
@@ -36,7 +36,7 @@ app.controller("myDemoCtrl", function($scope, $http, ngDialog) {
             if(parseInt(carousel.style.width) > screen.width){
               tl.to(carNext, 0.5, showCss);
             }
-            window.resize;
+            pageResize(event);
 	        }
         );
     };
@@ -131,15 +131,17 @@ app.directive('modalDialog', function() {
   };
 });
 
-window.onresize = function(event){
+window.onresize = pageResize;
+
+function pageResize(event){
   var backdrop = document.getElementById("backdrop"),
     content = document.getElementById("content");
 
   //if you're on the second page
   if(document.getElementById('carousel').style.width != ""){
-    var scrollTop     = $(window).scrollTop(),
-      elementOffset = $(document.getElementById('carousel')).offset().top,
-      distance      = (elementOffset - scrollTop) + $(document.getElementById('carousel')).outerHeight();
+    var scrollTop     = document.body.scrollTop,
+      elementOffset = document.getElementById('carousel').getBoundingClientRect().top + document.body.scrollTop,
+      distance      = (elementOffset - scrollTop) + document.getElementById('carousel').offsetHeight;
     backdrop.style.height = distance + "px";
     content.style.height = distance + "px";
   } else {
